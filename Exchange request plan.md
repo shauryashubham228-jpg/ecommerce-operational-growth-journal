@@ -105,26 +105,30 @@ This led to the operational insight that:
 
 ---
 
-## Step 3 — Process Planning
+## Step 3 — Shopify Exchange Workflow Planning
 
-I proposed a workflow where:
+I designed the operational exchange flow where:
 
 ```text
 Customer Requests Exchange
        ↓
 Exchange Approved in Return Prime
        ↓
-Replacement Order Created
+Shopify Order Tagged as "Exchange RP"
+       ↓
+Order Moves into Hold State
+       ↓
+Warehouse Verifies Replacement Inventory
        ↓
 Order Moves to Fulfillment Queue
        ↓
-Warehouse Packs & Ships Replacement
+Replacement Packed & Shipped
 ```
 
-This transformed:
-- Refund-only operations
-into
-- Exchange-enabled post-purchase operations
+This allowed:
+- Exchange orders to be operationally separated from normal orders
+- Warehouse teams to identify exchange orders easily
+- Better tracking and inventory control for replacement workflows
 
 ---
 
@@ -139,29 +143,39 @@ I initiated the idea that:
 
 ---
 
-## Step 2 — Exchange Lifecycle Structuring
+## Step 2 — Exchange Tagging Workflow
 
-Worked around:
-- Exchange approval workflow
-- Shopify fulfillment behavior
-- Inventory allocation planning
-- Warehouse operational flow
+Planned and implemented operational logic where:
+- Exchange orders were tagged using:
+  `Exchange RP`
 
-Designed operational transition:
+Purpose of tagging:
+- Separate exchange orders from standard fulfillment orders
+- Keep exchange orders in operational hold state temporarily
+- Allow warehouse/inventory verification before fulfillment
 
-```text
-Exchange Accepted
-       ↓
-Replacement Order Prepared
-       ↓
-Order Marked for Fulfillment
-       ↓
-Warehouse Processing Starts
-```
+This improved:
+- Operational visibility
+- Inventory management
+- Warehouse handling efficiency
 
 ---
 
-## Step 3 — Inventory Planning Insight
+## Step 3 — Hold-State & Fulfillment Workflow
+
+The workflow was designed so that:
+- Tagged exchange orders remained on hold initially
+- Warehouse team verified inventory availability
+- Once stock was confirmed, orders transitioned into unfulfilled/fulfillment-ready state
+
+This ensured:
+- Controlled inventory allocation
+- Better replacement planning
+- Reduced fulfillment confusion
+
+---
+
+## Step 4 — Inventory Planning Insight
 
 I identified:
 - Exchange success heavily depends on inventory depth
@@ -176,7 +190,7 @@ Conclusion:
 
 ---
 
-## Step 4 — Warehouse Fulfillment Alignment
+## Step 5 — Warehouse Fulfillment Alignment
 
 The workflow was designed so:
 - Exchange-approved orders transition into fulfillment operations
@@ -206,11 +220,15 @@ Customer Requests Exchange
        ↓
 Exchange Approved
        ↓
-Replacement Order Created
+Tagged as "Exchange RP"
        ↓
-Inventory Allocated
+Order Held for Inventory Verification
        ↓
-Warehouse Ships Replacement
+Warehouse Allocates Inventory
+       ↓
+Order Moved to Fulfillment
+       ↓
+Replacement Shipped
 ```
 
 ---
@@ -228,9 +246,10 @@ Warehouse Ships Replacement
 ## After Exchange Workflow Introduction
 - Better customer retention opportunity
 - Improved size replacement experience
+- Better operational visibility through tagging
+- Structured exchange fulfillment workflow
+- Improved warehouse coordination
 - More scalable post-purchase operations
-- Better operational recovery from returns
-- Improved utilization of warehouse and inventory workflows
 
 ---
 
@@ -252,8 +271,8 @@ Warehouse Ships Replacement
 
 ## Phase 3 — Exchange Workflow Design
 - Plan exchange lifecycle
-- Design fulfillment transition process
-- Structure operational flow
+- Create Shopify tagging workflow
+- Design hold-state inventory verification process
 
 ---
 
@@ -289,7 +308,8 @@ Build a structured exchange workflow to convert size-related returns into replac
 - Better customer retention
 - Faster replacement handling
 - Reduced unnecessary refunds
-- Improved post-purchase customer experience
+- Improved operational visibility
+- Scalable exchange operations
 
 ---
 
@@ -297,9 +317,9 @@ Build a structured exchange workflow to convert size-related returns into replac
 
 - Identified that 55%+ monthly returns were size-related using Return Prime analytics
 - Initiated and planned exchange process from scratch
+- Designed Shopify exchange tagging workflow using `Exchange RP`
+- Structured hold-state inventory verification process
 - Performed operational and inventory feasibility analysis
-- Structured exchange lifecycle and fulfillment workflow
-- Contributed to inventory planning understanding for exchanges
 - Helped align warehouse operations for replacement fulfillment
 - Improved post-purchase customer experience strategy
 
@@ -307,4 +327,4 @@ Build a structured exchange workflow to convert size-related returns into replac
 
 # 📌 Skills Demonstrated
 
-`Process Design` `Operations Strategy` `Analytics Interpretation` `Return Prime Dashboard Analysis` `Inventory Planning Insight` `Warehouse Fulfillment Understanding` `Root Cause Analysis` `Shopify Ecosystem Understanding` `Customer Experience Optimization` `Product Operations`
+`Process Design` `Operations Strategy` `Return Prime Dashboard Analysis` `Shopify Workflow Planning` `Inventory Planning Insight` `Warehouse Fulfillment Understanding` `Root Cause Analysis` `Customer Experience Optimization` `Product Operations`
