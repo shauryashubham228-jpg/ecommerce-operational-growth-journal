@@ -1,0 +1,33 @@
+{
+  "_comment": "Interakt Send Template Message API — Request Payload",
+  "_docs": "https://developers.interakt.ai/reference/send-template-messages",
+  "_endpoint": "POST https://api.interakt.ai/v1/public/message/",
+  "_headers_required": {
+    "Content-Type": "application/json",
+    "Authorization": "Basic YOUR_INTERAKT_API_KEY"
+  },
+  "_variable_mapping": {
+    "bodyValues[0]": "{{1}} — Customer first name",
+    "bodyValues[1]": "{{2}} — Refund amount in INR",
+    "bodyValues[2]": "{{3}} — Shopify order name/ID",
+    "buttonValues[0][0]": "{{4}} — Dynamic PayU payout link URL"
+  },
+
+  "countryCode": "+91",
+  "phoneNumber": "{{order.customer.phone}}",
+  "callbackData": "Shopify_COD_Refund_{{order.name}}",
+  "template": {
+    "name": "YOUR_APPROVED_TEMPLATE_CODE_NAME",
+    "languageCode": "en",
+    "bodyValues": [
+      "{{order.customer.firstName}}",
+      "{{order.totalPriceSet.shopMoney.amount}}",
+      "{{order.name}}"
+    ],
+    "buttonValues": {
+      "0": [
+        "{{http.response.body.data.payoutLink}}"
+      ]
+    }
+  }
+}

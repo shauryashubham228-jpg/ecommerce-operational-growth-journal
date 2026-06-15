@@ -1,0 +1,64 @@
+# WhatsApp Template for Meta Approval
+# Submit this via Interakt > Templates > Create Template
+
+TEMPLATE NAME:     cod_dispute_payout_link
+CATEGORY:          UTILITY
+LANGUAGE:          English (en)
+
+---
+
+## HEADER (Optional — leave blank or use text)
+[Leave blank]
+
+---
+
+## BODY TEXT (copy exactly as written below):
+
+Hi {{1}}, your COD dispute refund of ₹{{2}} for Order {{3}} is ready.
+
+Click the secure button below to enter your UPI ID or bank details and receive your instant transfer.
+
+This link expires in 48 hours.
+
+---
+
+## FOOTER (Optional):
+Powered by [Your Store Name]
+
+---
+
+## BUTTON:
+Type:         Call to Action
+Action:       Visit Website
+Button Label: Claim Your Refund
+URL Type:     Dynamic
+URL:          https://payu.in/{{1}}
+
+---
+
+## VARIABLE REFERENCE:
+{{1}} = Customer's first name         (e.g., "Rahul")
+{{2}} = Refund amount in INR          (e.g., "1499.00")
+{{3}} = Shopify Order ID/Name         (e.g., "#1042")
+
+Button URL Dynamic Suffix:
+{{1}} = The unique PayU payout link suffix (injected at runtime by Shopify Flow)
+
+---
+
+## SAMPLE MESSAGE PREVIEW:
+
+Hi Rahul, your COD dispute refund of ₹1499.00 for Order #1042 is ready.
+
+Click the secure button below to enter your UPI ID or bank details and receive your instant transfer.
+
+This link expires in 48 hours.
+
+[Claim Your Refund] → https://payu.in/s/XYZABC
+
+---
+
+## NOTES FOR META REVIEW:
+- This is a UTILITY template for customer dispute resolution
+- The link goes to a secure PayU-hosted page requiring OTP verification
+- No marketing content — purely transactional refund notification

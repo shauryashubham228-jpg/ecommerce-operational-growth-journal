@@ -1,0 +1,15 @@
+{
+  "_comment": "Sample PayU Smart Send API Success Response",
+  "_note": "The payoutLink value is what you pass to Interakt as buttonValues[0]",
+  "_shopify_flow_variable": "{{http.response.body.data.payoutLink}}",
+
+  "status": "success",
+  "msg": "Link created successfully",
+  "data": {
+    "payoutLink": "https://payu.in/s/SAMPLE_LINK_ID",
+    "merchantRefId": "SHOPIFY_COD_#1042",
+    "amount": "1500.00",
+    "expiryDate": "2026-06-15T23:59:59Z",
+    "status": "CREATED"
+  }
+}

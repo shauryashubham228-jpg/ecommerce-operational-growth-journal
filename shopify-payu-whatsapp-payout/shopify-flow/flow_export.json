@@ -1,0 +1,80 @@
+{
+  "_note": "This is a reference export of the Shopify Flow workflow structure.",
+  "_import_note": "Shopify Flow JSON import is supported on some plans. If your plan supports it, you can attempt to import this. Otherwise, use flow_config_reference.md to configure manually.",
+  "_version": "1.0",
+  "_last_updated": "2026-06-13",
+
+  "workflow": {
+    "title": "Send PayU COD Payout Link",
+    "enabled": true,
+    "trigger": {
+      "type": "admin_button_clicked",
+      "app": "Admin Buttons",
+      "button_label": "Send PayU COD Payout Link",
+      "button_location": "order_details"
+    },
+    "steps": [
+      {
+        "step": 1,
+        "label": "Generate PayU Smart Send Payout Link",
+        "action": "send_http_request",
+        "config": {
+          "method": "POST",
+          "url_uat": "https://uatoneapi.payu.in/payout/v2/smartSend/link",
+          "url_production": "https://payouts.payumoney.com/payout/v2/smartSend/link",
+          "headers": {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer YOUR_PAYU_JWT_TOKEN"
+          },
+          "body": {
+            "amount": "{{order.totalPriceSet.shopMoney.amount}}",
+            "merchantRefId": "SHOPIFY_COD_{{order.name}}",
+            "custName": "{{order.customer.firstName}} {{order.customer.lastName}}",
+            "custMobile": "{{order.customer.phone}}",
+            "description": "COD Dispute Refund for Order {{order.name}}",
+            "expiryDate": "REPLACE_WITH_ISO8601_TIMESTAMP_48HRS_FROM_NOW"
+          },
+          "output_variable": "{{http.response.body.data.payoutLink}}"
+        }
+      },
+      {
+        "step": 2,
+        "label": "Send WhatsApp Template via Interakt",
+        "action": "send_http_request",
+        "config": {
+          "method": "POST",
+          "url": "https://api.interakt.ai/v1/public/message/",
+          "headers": {
+            "Content-Type": "application/json",
+            "Authorization": "Basic YOUR_INTERAKT_API_KEY"
+          },
+          "body": {
+            "countryCode": "+91",
+            "phoneNumber": "{{order.customer.phone}}",
+            "callbackData": "Shopify_COD_Refund_{{order.name}}",
+            "template": {
+              "name": "YOUR_APPROVED_TEMPLATE_CODE_NAME",
+              "languageCode": "en",
+              "bodyValues": [
+                "{{order.customer.firstName}}",
+                "{{order.totalPriceSet.shopMoney.amount}}",
+                "{{order.name}}"
+              ],
+              "buttonValues": {
+                "0": ["{{http.response.body.data.payoutLink}}"]
+              }
+            }
+          }
+        }
+      },
+      {
+        "step": 3,
+        "label": "Log Timeline Comment in Shopify Order",
+        "action": "add_order_comment",
+        "config": {
+          "comment": "📩 PayU COD Payout Link Generated.\n• Amount Locked: ₹{{order.totalPriceSet.shopMoney.amount}}\n• Customer Mobile: {{order.customer.phone}}\n• Order Reference: {{order.name}}\n• Status: Dispatched automatically via WhatsApp (Interakt).\n• Reference Link: {{http.response.body.data.payoutLink}}\n• Initiated by: Support Agent (automated trigger)"
+        }
+      }
+    ]
+  }
+}
